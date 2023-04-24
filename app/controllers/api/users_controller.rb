@@ -21,7 +21,7 @@ class Api::UsersController < ApplicationController
 
 	def typehead
 		if params[:querry].present?
-			@users = User.or({first_name: /{params[:search]}/i}, {last_name: /{params[:search]}/i}, {email: /{params[:search]}/i})
+			@users = User.or({first_name: /{params[:querry]}/i}, {last_name: /{params[:querry]}/i}, {email: /{params[:querry]}/i})
 			render json: Api::UserSerializer.new(@users).serializable_hash, status: :ok
 		else
 			render json: {message: "user not present with #{params[:query]}"}
